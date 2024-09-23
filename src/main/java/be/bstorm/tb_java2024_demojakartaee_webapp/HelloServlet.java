@@ -2,10 +2,12 @@ package be.bstorm.tb_java2024_demojakartaee_webapp;
 
 import java.io.*;
 
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
+@WebServlet(name = "helloServlet", value = "/")
 public class HelloServlet extends HttpServlet {
     private String message;
 
