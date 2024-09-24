@@ -1,17 +1,14 @@
 package be.bstorm.tb_java2024_demojakartaee_webapp.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import org.hibernate.validator.constraints.Range;
 
 import java.util.Objects;
 
 @Entity
-public class Plane extends BaseEntity<Long>{
+public class Plane extends BaseEntity<Long> {
 
-    @Column(unique=true,nullable = false,length = 50)
+    @Column(unique = true, nullable = false, length = 50)
     private String plateNumber;
 
     @Column(nullable = false)
@@ -21,10 +18,11 @@ public class Plane extends BaseEntity<Long>{
     @ManyToOne(fetch = FetchType.LAZY)
     private Owner owner;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private PlaneType planeType;
 
-    public Plane(){}
+    public Plane() {
+    }
 
     public Plane(String plateNumber, int flyCount) {
         this();
@@ -72,7 +70,7 @@ public class Plane extends BaseEntity<Long>{
 
     @Override
     public String toString() {
-        return  super.toString() + " " +
+        return super.toString() + " " +
                 "Plane{" +
                 "plateNumber='" + plateNumber + '\'' +
                 ", flyCount=" + flyCount +

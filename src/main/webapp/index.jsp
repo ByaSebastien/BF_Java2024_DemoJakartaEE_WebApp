@@ -9,5 +9,6 @@
 </h1>
 <br/>
 <a href="${pageContext.request.contextPath}/plane">Plane</a>
+<a href="${pageContext.request.contextPath}/planeType">Plane type</a>
 </body>
 </html>
