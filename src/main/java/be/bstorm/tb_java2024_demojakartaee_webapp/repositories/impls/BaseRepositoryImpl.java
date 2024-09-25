@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class BaseRepositoryImpl<TEntity, TId> implements BaseRepository<TEntity, TId> {
+public class BaseRepositoryImpl<TEntity, TId> implements BaseRepository<TEntity, TId> {
 
     protected final EntityManagerFactory emf;
     private final Class<TEntity> entityClass;
@@ -28,7 +28,7 @@ public abstract class BaseRepositoryImpl<TEntity, TId> implements BaseRepository
 
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.merge(entity);
+            entity = em.merge(entity);
             em.getTransaction().commit();
             return entity;
         }

@@ -29,7 +29,7 @@ public class PilotPlaneType {
         this.flyCount = flyCount;
         this.pilot = pilot;
         this.planeType = planeType;
-//        this.id = new PilotPlaneTypeId(pilot.getId(), planeType.getId());
+        this.id = new PilotPlaneTypeId(pilot.getId(), planeType.getId());
     }
 
     public PilotPlaneTypeId getId() {
@@ -88,6 +88,13 @@ public class PilotPlaneType {
         private Long pilotId;
         private Long planeTypeId;
 
+        public PilotPlaneTypeId() {}
+
+        public PilotPlaneTypeId(Long pilotId, Long planeTypeId) {
+            this.pilotId = pilotId;
+            this.planeTypeId = planeTypeId;
+        }
+
         public Long getPilotId() {
             return pilotId;
         }
@@ -104,9 +111,17 @@ public class PilotPlaneType {
             this.planeTypeId = planeTypeId;
         }
 
-        //        public PilotPlaneTypeId(Long pilotId, Long planeTypeId) {
-//            this.pilotId = pilotId;
-//            this.planeTypeId = planeTypeId;
-//        }
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            PilotPlaneTypeId that = (PilotPlaneTypeId) o;
+            return Objects.equals(pilotId, that.pilotId) && Objects.equals(planeTypeId, that.planeTypeId);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(pilotId, planeTypeId);
+        }
     }
 }
